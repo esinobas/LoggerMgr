@@ -9,10 +9,9 @@
    require_once './log4php/Logger.php';
    
    class LoggerMgr{
-      
-      
+            
       /*
-       * Class const
+       * Class consts
        */
       /**
        * 
@@ -42,6 +41,48 @@
          
          //Initialize the log4php object
          Logger::configure(confFileC);
+      }
+      
+      /*
+       * Public methods
+       */
+      
+      /**
+       * Static function that creates the object LoggerMgr whenever this is not
+       * created and returns the object to allowd get a logger
+       *
+       * @return instanceM: A instance of LoggerMgr;
+       */
+      public static function Instance(){
+         
+         if (!isset(self::$instanceM)){
+            $className = __CLASS__;
+            self::$instanceM = new $className;
+         }
+         return self::$instanceM;
+      }
+      
+      /**
+       * Method that clones the current object.
+       * The clonation of the object is not allowed.
+       */
+      public function __clone(){
+         //Avoid the class can be cloned
+         trigger_error('The clonation of this object is not allowed',
+                                    E_USER_ERROR);
+      }
+      
+      /**
+       * Funtions that returns a logger.
+       * 
+       * @param string $theLoggerName: The name of the logger that will be used
+       * to write a log.
+       * 
+       * @return A Logger.
+       */
+      public function getLogger($theLoggerName){
+         
+         return Logger::getLogger($theLoggerName);
       }
    }
 ?>
