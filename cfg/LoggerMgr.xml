@@ -1,1 +1,38 @@
 <?xml version="1.0" encoding="UTF-8"?>
+<configuration xmlns="http://logging.apache.org/log4php/">
+   
+   <appender name="DatabaseRollingFileAppdender" class="LoggerAppenderRollingFile">
+      <param name="file" value="/home/tebi/Datos/webserver/MEMcakesandcookies/www/log/Database.log" />
+      <param name="maxFileSize" value="1MB" />
+      <param name="maxBackupIndex" value="1" />
+      <param name = "append" value = "true"/>
+      <layout class="LoggerLayoutPattern">
+         <param name="conversionPattern" value=" [%level]. %date{d/m/Y - H:i:s}. %logger. %method. line [%line]. %msg.%n" />
+      </layout>
+   </appender>
+   
+   <appender name="GenerateTableFileAppender" class="LoggerAppenderRollingFile">
+      <param name="file" value="/home/tebi/Datos/webserver/tools/php/GenerateTable/GenerateTable.log" />
+      <param name="maxFileSize" value="1MB" />
+      <param name="maxBackupIndex" value="1" />
+      <param name = "append" value = "true"/>
+       <layout class="LoggerLayoutPattern">
+         <param name="conversionPattern" value=" [%level]. %date{d/m/Y - H:i:s}. %logger. %method. line [%line]. %msg.%n" />
+      </layout>
+    </appender>
+    
+    <logger name="main">
+      <level value="TRACE"/>
+      <appender_ref ref = "GenerateTableFileAppender"></appender_ref>
+   </logger>
+    
+   <logger name="Cursos.php">
+      <level value="TRACE"/>
+      <appender_ref ref = "DatabaseRollingFileAppdender"></appender_ref>
+   </logger>
+   
+   <logger name="DatabaseDef">
+      <level value="TRACE"/>
+      <appender_ref ref = "DatabaseRollingFileAppdender"></appender_ref>
+   </logger>
+</configuration>
