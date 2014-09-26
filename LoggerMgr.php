@@ -6,7 +6,7 @@
     * to write in the log.
     */
    
-   require_once './log4php/Logger.php';
+   include_once dirname(__FILE__).'/log4php/Logger.php';
    
    class LoggerMgr{
             
@@ -17,7 +17,7 @@
        * 
        * @var confFileC: The log configuration file.
        */
-      const confFileC = "./cfg/Logger.xml";
+      const confFileC = "cfg/LoggerMgr.xml";
       
       /*
        * Class properties
@@ -40,7 +40,8 @@
       protected function __construct(){
          
          //Initialize the log4php object
-         Logger::configure(confFileC);
+         $confFile = dirname(__FILE__)."/".LoggerMgr::confFileC;
+         Logger::configure($confFile);
       }
       
       /*
@@ -53,7 +54,8 @@
        *
        * @return instanceM: A instance of LoggerMgr;
        */
-      public static function Instance(){
+      static public function Instance(){
+         
          
          if (!isset(self::$instanceM)){
             $className = __CLASS__;
