@@ -12,7 +12,7 @@
    </appender>
    
    <appender name="GenerateTableFileAppender" class="LoggerAppenderRollingFile">
-      <param name="file" value="/home/tebi/Datos/webserver/tools/php/GenerateTable/GenerateTable.log" />
+      <param name="file" value="/home/tebi/Datos/webserver/tools/php/Database/Tools/GenerateDatabase/GenerateTable.log" />
       <param name="maxFileSize" value="1MB" />
       <param name="maxBackupIndex" value="1" />
       <param name = "append" value = "true"/>

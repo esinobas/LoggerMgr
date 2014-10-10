@@ -6,6 +6,8 @@
     * to write in the log.
     */
    
+   set_include_path( get_include_path() . PATH_SEPARATOR . dirname(__FILE__));
+   
    include_once dirname(__FILE__).'/log4php/Logger.php';
    
    class LoggerMgr{
